@@ -156,17 +156,18 @@ jobs:
       - add_ssh_keys:
               # You can get this ID in the section where you registered the SSH Key
               fingerprints: ["56:f6:39:6e:49:f8:05:df:cf:74:02:f3:00:fd:0f:ae"]
-      # attach workspace
+      - attach_workspace:
+          at: /.circleci/ansible/inventory.txt
       - run:
           name: Install dependencies
           command: |
-            # Your code here
-            exit 1
+            yum -y install tar gzip
+            apk add --update ansible
       - run:
           name: Configure server
           command: |
-            # Your code here
-            exit 1
+            cd .circleci/ansible
+            ansible-playbook -i inventory.txt configure-server.yml
       # Here's where you will add some code to rollback on failure
 
 workflows:
@@ -187,8 +188,8 @@ workflows:
           filters:
             branches:
               only: [master]
-      #- configure-infrastructure:
-      #    requires: [deploy-infrastructure]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
       #- run-migrations:
       #    requires: [configure-infrastructure]
       #- deploy-frontend:
