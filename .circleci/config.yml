@@ -123,7 +123,7 @@ jobs:
 
   deploy-infrastructure:
     docker:
-      - image: cimg/aws
+      - image: cimg/aws:2022.06.1
     steps:
       - checkout
       - run:
