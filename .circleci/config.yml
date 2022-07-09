@@ -145,8 +145,37 @@ jobs:
               --template-file .circleci/files/frontend.yml \
               --tags project=udapeople \
               --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}" \
-              --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"  
+              --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"
+      - run:
+          name: Add back-end ip to ansible inventory
+          command: |
+            
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/.circleci/ansible/inventory.txt
       - destroy-environment 
+
+  configure-infrastructure:
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+              # You can get this ID in the section where you registered the SSH Key
+              fingerprints: ["56:f6:39:6e:49:f8:05:df:cf:74:02:f3:00:fd:0f:ae"]
+      # attach workspace
+      - run:
+          name: Install dependencies
+          command: |
+            # Your code here
+            exit 1
+      - run:
+          name: Configure server
+          command: |
+            # Your code here
+            exit 1
+      # Here's where you will add some code to rollback on failure
 
 workflows:
   default:
@@ -165,7 +194,7 @@ workflows:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           filters:
             branches:
-              only: [test-feature-branch]
+              only: [master]
       #- configure-infrastructure:
       #    requires: [deploy-infrastructure]
       #- run-migrations:
