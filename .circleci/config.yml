@@ -197,18 +197,16 @@ jobs:
 
   deploy-frontend:
     docker:
-      - image: amazon/aws-cli
+      - image: python:3.10.5-alpine3.16
     steps:
       - checkout
       
       - run:
           name: Install dependencies
           command: |
-            yum update
-            yum install python3
-            yum install nodejs npm
+            apk add python3
+            apk add nodejs npm
             apk add --update ansible
-            yum -y install tar gzip
       - attach_workspace:
           at: /.circleci/ansible/inventory.txt
       - run:
