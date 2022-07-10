@@ -204,9 +204,9 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apt update
-            apt install python3
-            apt install nodejs npm
+            yum update
+            dnf install python3
+            yum install nodejs npm
             apk add --update ansible
             yum -y install tar gzip
       - attach_workspace:
