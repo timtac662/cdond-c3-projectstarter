@@ -209,6 +209,7 @@ jobs:
             apt install python3
             apt install nodejs npm
             apk add --update ansible
+            yum -y install tar gzip
 
       - run:
           name: Get backend url
