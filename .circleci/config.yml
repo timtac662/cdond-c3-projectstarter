@@ -185,8 +185,8 @@ jobs:
             npm cache clean --force
             rm -rf node_modules
             npm install
-            npm audit fix --audit-level=critical --force
-            npm audit fix --audit-level=high --force
+            npm audit fix --audit-level=critical 
+            npm audit fix --audit-level=high 
             npm run migrations > migrations_dump.txt
       - run:
           name: Send migration results to kvdb
