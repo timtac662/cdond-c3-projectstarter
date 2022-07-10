@@ -4,7 +4,6 @@
   apt:
     name: python3
     state: latest
-    global: yes
     update_cache: yes
 
 - name: "update apt packages."
