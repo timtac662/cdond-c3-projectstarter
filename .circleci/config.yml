@@ -205,7 +205,7 @@ jobs:
           name: Install dependencies
           command: |
             yum update
-            dnf install python3
+            yum install python3
             yum install nodejs npm
             apk add --update ansible
             yum -y install tar gzip
