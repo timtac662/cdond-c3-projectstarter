@@ -228,7 +228,7 @@ jobs:
             cd frontend
             npm install
             npm run build
-            tar -czvf artifact-84d29a4.tar.gz dist
+            tar -czvf artifact-${CIRCLE_WORKFLOW_ID:0:7}.tar.gz dist
             aws s3 cp dist s3://udapeople-84d29a4 --recursive
       # Here's where you will add some code to rollback on failure      
                     
