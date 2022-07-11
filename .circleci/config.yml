@@ -219,9 +219,9 @@ jobs:
           name: Get backend url
           command: |
             # your code here
-            export API_URL="http://34.202.162.236:3030"
+            export API_URL="http://52.91.217.238:3030"
             echo "${API_URL}"
-            echo API_URL="http://34.202.162.236:3030" >> frontend/.env
+            echo API_URL="http://52.91.217.238:3030" >> frontend/.env
             cat frontend/.env
       - run:
           name: Deploy frontend objects
@@ -295,7 +295,7 @@ jobs:
       - run:
           name: Backend smoke test.
           command: |
-            export API_URL="http://34.202.162.236:3030"
+            export API_URL="http://52.91.217.238:3030"
             echo "${API_URL}"
             if curl "${API_URL}/api/status" | grep "ok"
             then
