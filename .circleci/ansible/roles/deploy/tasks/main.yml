@@ -1,42 +1,14 @@
 ---
-- name: "install python3"
+- name: Extract artifact
   become: true
-  apt:
-    name: python3
-    state: latest
-    update_cache: yes
+  unarchive:
+    src: files/artifact.tar.gz
+    dest: /home/ubuntu
 
-- name: "update apt packages."
+- name: "Start app"
   become: true
-  apt:
-    update_cache: yes
-
-- name: "upgrade packages"
-  become: true
-  apt:
-    upgrade: yes
-
-- name: "remove unnecessary dependencies"
-  become: true
-  apt:
-    autoremove: yes
-
-- name: "install dependencies"
-  become: true
-  apt:
-    name: ["nodejs", "npm", "tar", "gzip"]
-    state: latest
-    update_cache: yes
-- name: "install pm2"
-  become: true
-  npm: 
-    name: pm2
-    global: yes
-    production: yes
-    state: present
-
-- name: "executing node"
   shell: |
+    cd /home/ubuntu
     npm install
     pm2 stop default
     pm2 start npm -- start
