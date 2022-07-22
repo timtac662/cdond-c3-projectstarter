@@ -4,15 +4,10 @@
   apt:
     autoremove: yes
 
-- name: "Add Node.js from source"
-  become: true
-  shell: |
-    curl -sL https://deb.nodesource.com/setup_13.x | sudo -E nash -
-
 - name: "install dependencies"
   become: true
   apt:
-    name: ["nodejs","tar", "gzip"]
+    name: ["npm","nodejs","tar", "gzip"]
     state: latest
     update_cache: yes
 
