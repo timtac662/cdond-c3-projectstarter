@@ -294,7 +294,6 @@ jobs:
             pip3 install \
             awscli
             apk add --update ansible
-            rm -rf /var/cache/apk/*
       - run:
           name: Deploy backend
           command: |
