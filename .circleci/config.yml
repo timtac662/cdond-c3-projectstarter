@@ -391,18 +391,12 @@ jobs:
 
   cleanup:
     docker:
-      - image: cimg/base:stable
+      - image: amazon/aws-cli
     steps:
       - checkout
       - run:
           name: get old stack workflow Id
           command: |
-            apk add --no-cache \
-            python3 \
-            py3-pip 
-            pip3 install --upgrade pip 
-            pip3 install \
-            awscli
             export STACKS=($(aws cloudformation list-stacks \
               --query "StackSummaries[*].StackName" \
               --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
