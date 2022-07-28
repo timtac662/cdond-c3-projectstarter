@@ -222,11 +222,11 @@ jobs:
           name: Send migration results to kvdb
           command: |
             echo ${CIRCLE_WORKFLOW_ID:0:7}
-            if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
-            then
-                curl https://kvdb.io/Vt3PDfZPEuiBTb6yASLdhj/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
-                echo "done"
-            fi
+            #if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
+            #then
+            curl https://kvdb.io/Vt3PDfZPEuiBTb6yASLdhj/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
+            echo "done"
+            #fi
       - destroy-environment
       - revert-migrations
 
